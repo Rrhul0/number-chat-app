@@ -54,16 +54,19 @@ app.post('/respond/:id', async (req, res) => {
         let result
         switch (operation) {
             case '+':
-                result = discussion.number + number
+                result = discussion.result + number
                 break
             case '-':
-                result = discussion.number - number
+                result = discussion.result - number
                 break
             case '*':
-                result = discussion.number * number
+                result = discussion.result * number
                 break
             case '/':
-                result = discussion.number / number
+                if (number === 0) {
+                    return res.status(400).send('Cannot divide by zero')
+                }
+                result = Math.abs(discussion.result / number)
                 break
             default:
                 return res.status(400).send('Invalid operation')
