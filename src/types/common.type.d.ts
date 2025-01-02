@@ -3,7 +3,7 @@ type Discussion = {
     id: string
     result: number
     operation: string | null
-    createdAt: Date
+    createdAt: string
     parentId: string | null
     replies: Discussion[]
 }

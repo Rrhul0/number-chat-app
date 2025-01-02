@@ -23,3 +23,15 @@ export const mutationFunction = async (e: React.FormEvent<HTMLFormElement>) => {
         body: message
     })
 }
+
+export const newDiscussionFunction = async (
+    e: React.FormEvent<HTMLFormElement>
+) => {
+    e.preventDefault()
+    const formData = new FormData(e.target as HTMLFormElement)
+    const message = formData.get('message')
+    return fetch(BACKEND_URL + '/start', {
+        method: 'POST',
+        body: message
+    })
+}
