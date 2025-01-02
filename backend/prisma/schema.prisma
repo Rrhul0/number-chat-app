@@ -5,10 +5,24 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Discussion {
+    id        String   @id @default(cuid())
+    number    Int
+    operation String? // Operation applied (e.g., +3)
+    result    Int
+    createdAt DateTime @default(now())
+
+    parentId String?      @db.VarChar(36)
+    parent   Discussion?  @relation("Replies", fields: [parentId], references: [id])
+    replies  Discussion[] @relation("Replies")
+
+    @@index([parentId])
 }
