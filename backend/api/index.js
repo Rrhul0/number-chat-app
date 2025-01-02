@@ -1,21 +1,20 @@
-import express from 'express'
-import { PrismaClient } from '@prisma/client'
-import cors from 'cors'
+// import express from 'express'
+// import { PrismaClient } from '@prisma/client'
+// import cors from 'cors'
+
+const express = require('express')
+const { PrismaClient } = require('@prisma/client')
+const cors = require('cors')
 
 const app = express()
 app.use(express.text({ type: '*/*' }))
 app.use(cors())
 
-const port = 3000
+app.get('/', (req, res) => res.send('Express on Vercel'))
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+app.listen(3000, () => console.log('Server ready on port 3000.'))
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
-
+module.exports = app
 const prisma = new PrismaClient()
 
 app.post('/start', async (req, res) => {

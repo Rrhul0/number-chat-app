@@ -2,11 +2,11 @@
     "name": "number-chat-backend",
     "version": "1.0.0",
     "main": "index.js",
-    "type": "module",
     "license": "MIT",
     "scripts": {
-        "start": "node index.js",
-        "dev": "nodemon index.js"
+        "start": "node api/index.js",
+        "dev": "nodemon index.js",
+        "build": "prisma generate"
     },
     "dependencies": {
         "@prisma/client": "6.1.0",
